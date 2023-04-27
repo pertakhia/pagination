@@ -1,57 +1,46 @@
+const cardContainer = document.querySelector(".cards-container")
 
 const paginationObject = {
-    currentPage: 1,
-    limit: 10,
-    total: 100,
-    skip: 0,
+  currentPage: 1,
+  limit: 10,
+  total: 100,
+  skip: 0,
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOM loaded")
+  getPaginationParams(paginationObject)
+})
 
-
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM loaded')
-    }
-)
-
-// const createPagInationBtns = (paginationObject) => {
-//     const paginationContainer = document.querySelector('.pagination-container')
-//     const paginationBtns = document.createElement('div')
-//     paginationBtns.classList.add('pagination-btns')
-//     paginationContainer.appendChild(paginationBtns)
-//     paginationBtns.innerHTML = `
-//         <button class="pagination-btn" id="first-page-btn">First</button>
-//         <button class="pagination-btn" id="prev-page-btn">Prev</button>
-//         <button class="pagination-btn" id="next-page-btn">Next</button>
-//         <button class="pagination-btn" id="last-page-btn">Last</button>
-//     `
-//     const firstPageBtn = document.querySelector('#first-page-btn')
-//     const prevPageBtn = document.querySelector('#prev-page-btn')
-//     const nextPageBtn = document.querySelector('#next-page-btn')
-//     const lastPageBtn = document.querySelector('#last-page-btn')
-
-//     firstPageBtn.addEventListener('click', () => {
-//         paginationObject.currentPage = 1
-//         paginationObject.skip = 0
-//         getPaginationParams(paginationObject)
-//     })
-// }
+const createCard = product => {
+  console.log("product car", product)
+  const card = document.createElement("div")
+  card.classList.add("card")
+  card.innerHTML = `
+        <div class="card-img">
+            <img src="${product.images[0]}" alt="${product.title}" />
+        </div>
+        <div class="card-body">
+            <h3 class="card-title">${product.title}</h3>
+            <p class="card-price">$${product.price}</p>
+            <p class="card-description">${product.description}</p>
+        </div>
+    `
+  cardContainer.appendChild(card)
+}
 
 const getProducts = async () => {
-    const response = await fetch(url)
-    const data = await response.json()
-    console.log(data)
+  const response = await fetch(url)
+  const data = await response.json()
+  console.log(data)
 }
 
-const getPaginationParams = async ( data ) => {
-    let url = `https://dummyjson.com/products?limit=${data.limit}&skip=${data.skip}`
-    
-    const response = await fetch(url)
-    const data = await response.json()
-    console.log(data)
+const getPaginationParams = async res => {
+  let url = `https://dummyjson.com/products?limit=${res.limit}&skip=${res.skip}`
+  const response = await fetch(url)
+  const data = await response.json()
+  const products = await data.products
+  await products.forEach(product => {
+    createCard(product)
+  })
 }
-
-
-
-
-
-
