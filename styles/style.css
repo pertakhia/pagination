@@ -1,0 +1,25 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+
+.btn-pagination {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    color: #333;
+    padding: 8px 16px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.btn-prev {
+    border-radius: 4px 0 0 4px;
+}
+
+.btn-next {
+    border-radius: 0 4px 4px 0;
+}
