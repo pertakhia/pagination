@@ -1,13 +1,11 @@
 const cardContainer = document.querySelector(".cards-container")
 let isLoadig = true // to prevent multiple requests
-
 let paginationObject = {
   currentPage: 1,
   limit: 10,
   total: 100,
   skip: 0,
 }
-
 const totalPages = Math.ceil(paginationObject.total / paginationObject.limit)
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -16,8 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 const createCard = product => {
-  console.log(product)
-  console.log("paginnationObject", paginationObject)
   cardContainer.innerHTML = ""
   product.forEach(product => {
     const card = document.createElement("div")
@@ -84,7 +80,6 @@ const generatePaginationButtons = (totalPages, currentPage) => {
   prevButton.innerText = "Prev"
 
   prevButton.addEventListener("click", () => {
-    console.log("currentPage prev", currentPage)
     if (currentPage > 1) {
       currentPage--
       // update the pagination object
@@ -107,9 +102,6 @@ const generatePaginationButtons = (totalPages, currentPage) => {
     pageButton.classList.add("btn-pagination")
     pageButton.innerText = i
     pageButton.classList.toggle("active", i === currentPage)
-
-    console.log("i", i)
-    console.log("currentPage", currentPage)
     pageButton.addEventListener("click", () => {
       if (i !== currentPage) {
         currentPage = i
