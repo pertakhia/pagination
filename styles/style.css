@@ -32,7 +32,8 @@ body {
 
 img {
   width: 100%;
-  object-fit: cover;
+  height: 250px;
+  object-fit: contain;
 }
 
 .btn-pagination {
@@ -55,4 +56,35 @@ img {
 
 .btn-next {
   border-radius: 0 4px 4px 0;
+}
+
+.spinner-container {
+  width: auto;
+  height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+}
+
+.active {
+  background-color: #3498db;
+  color: #fff;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 80px;
+  height: 80px;
+  animation: spin 2s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
